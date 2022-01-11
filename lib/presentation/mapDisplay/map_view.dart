@@ -5,6 +5,8 @@ import 'package:mother_bet/dataProvider/map_data_providers.dart';
 import 'package:mother_bet/models/directions.dart';
 
 class MapScreen extends StatefulWidget {
+  const MapScreen({Key? key}) : super(key: key);
+
   @override
   _MapScreenState createState() => _MapScreenState();
 }
