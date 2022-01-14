@@ -20,6 +20,7 @@ class UserSimplePreferences {
       final SharedPreferences preferences = await prefs;
 
       await preferences.setString(_keyUser, json.encode(user));
+      print("In");
     } catch (e) {
       throw AppExc("User Couldn't Be Set");
     }
@@ -28,9 +29,11 @@ class UserSimplePreferences {
   static Future<User> getUser() async {
     try {
       final SharedPreferences preferences = await prefs;
-
+      // print(User.fromJson(json.decode(preferences.getString(_keyUser)!)).token +
+      //     "hgfxfghg");
       return User.fromJson(json.decode(preferences.getString(_keyUser)!));
     } catch (err) {
+      print(err);
       throw AppExc("User Doesn't Exist");
     }
   }

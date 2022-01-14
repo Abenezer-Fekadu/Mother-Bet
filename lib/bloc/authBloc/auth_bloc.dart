@@ -21,7 +21,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final email = event.email;
       final password = event.password;
 
-      final user = User("id", email, "username", "phone", password);
+      final user = User("id", email, "username", "phone", password, "token");
       try {
         final result = await authRepo.login(user);
 
@@ -42,7 +42,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final phone = event.phone;
       final password = event.password;
 
-      final user = User("0", email, username, phone, password);
+      final user = User("0", email, username, phone, password, "token");
 
       try {
         final result = await authRepo.signup(user);

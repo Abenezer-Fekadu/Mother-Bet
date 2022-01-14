@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:mother_bet/dataProvider/map_data_providers.dart';
-import 'package:mother_bet/models/directions.dart';
+import 'package:mother_bet/presentation/components/bottom_nav_bar.dart';
 
 class MapScreen extends StatefulWidget {
+  static const String routeName = '/search';
+
   const MapScreen({Key? key}) : super(key: key);
 
   @override
@@ -26,55 +27,57 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Maps"),
-          actions: [
-            if (_origin != null)
-              TextButton(
-                onPressed: () => _mapController.animateCamera(
-                  CameraUpdate.newCameraPosition(
-                    CameraPosition(target: _origin, zoom: 14, tilt: 50.0),
-                  ),
-                ),
-                style: TextButton.styleFrom(
-                  primary: Colors.green,
-                  textStyle: const TextStyle(fontWeight: FontWeight.w600),
-                ),
-                child: const Text("ORIGIN"),
-              ),
-            if (_destination != null)
-              TextButton(
-                onPressed: () => _mapController.animateCamera(
-                  CameraUpdate.newCameraPosition(
-                    CameraPosition(target: _destination, zoom: 14, tilt: 50.0),
-                  ),
-                ),
-                style: TextButton.styleFrom(
-                  primary: Colors.blue,
-                  textStyle: const TextStyle(fontWeight: FontWeight.w600),
-                ),
-                child: const Text("ORIGIN"),
-              )
-          ],
-        ),
-        body: GoogleMap(
-          initialCameraPosition: _initialCameraPosition,
-          zoomControlsEnabled: false,
-          myLocationEnabled: true,
-          onMapCreated: _onMapCreated,
-          markers: {
-            if (_origin != null) _origin,
-            if (_destination != null) _destination
-          },
-          onLongPress: _addMarker,
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).primaryColor,
-          foregroundColor: Colors.black,
-          onPressed: () => _mapController.animateCamera(
-              CameraUpdate.newCameraPosition(_initialCameraPosition)),
-          child: const Icon(Icons.center_focus_strong),
-        ));
+      // appBar: AppBar(
+      //   title: const Text("Maps"),
+      //   actions: [
+      //     if (_origin != null)
+      //       TextButton(
+      //         onPressed: () => _mapController.animateCamera(
+      //           CameraUpdate.newCameraPosition(
+      //             CameraPosition(target: _origin, zoom: 14, tilt: 50.0),
+      //           ),
+      //         ),
+      //         style: TextButton.styleFrom(
+      //           primary: Colors.green,
+      //           textStyle: const TextStyle(fontWeight: FontWeight.w600),
+      //         ),
+      //         child: const Text("ORIGIN"),
+      //       ),
+      //     if (_destination != null)
+      //       TextButton(
+      //         onPressed: () => _mapController.animateCamera(
+      //           CameraUpdate.newCameraPosition(
+      //             CameraPosition(target: _destination, zoom: 14, tilt: 50.0),
+      //           ),
+      //         ),
+      //         style: TextButton.styleFrom(
+      //           primary: Colors.blue,
+      //           textStyle: const TextStyle(fontWeight: FontWeight.w600),
+      //         ),
+      //         child: const Text("ORIGIN"),
+      //       )
+      //   ],
+      // ),
+      body: GoogleMap(
+        initialCameraPosition: _initialCameraPosition,
+        zoomControlsEnabled: false,
+        myLocationEnabled: true,
+        onMapCreated: _onMapCreated,
+        markers: {
+          if (_origin != null) _origin,
+          if (_destination != null) _destination
+        },
+        onLongPress: _addMarker,
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColor,
+        foregroundColor: Colors.black,
+        onPressed: () => _mapController.animateCamera(
+            CameraUpdate.newCameraPosition(_initialCameraPosition)),
+        child: const Icon(Icons.center_focus_strong),
+      ),
+      bottomNavigationBar: BottomNavBar(1),
+    );
   }
 
   _onMapCreated(GoogleMapController controller) {

@@ -4,25 +4,29 @@ class User {
   final String username;
   final String phone;
   final String password;
+  final String token;
 
-  User(this.userId, this.email, this.username, this.phone, this.password);
+  User(this.userId, this.email, this.username, this.phone, this.password,
+      this.token);
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      json['user_id'] as String,
+      json['_id'] as String,
       json['email'] as String,
       json['username'] as String,
       json['phone'] as String,
       "password",
+      json['token'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'user_id': userId,
+      '_id': userId,
       'email': email,
       'username': username,
-      'phone': phone
+      'phone': phone,
+      'token': token
     };
   }
 }

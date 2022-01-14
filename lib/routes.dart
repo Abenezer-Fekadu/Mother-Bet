@@ -3,15 +3,13 @@ import 'package:mother_bet/presentation/auth/login_screen.dart';
 import 'package:mother_bet/presentation/auth/signup.dart';
 import 'package:mother_bet/presentation/auth/welcome_page.dart';
 import 'package:mother_bet/presentation/home/home.dart';
+import 'package:mother_bet/presentation/mapDisplay/map_view.dart';
 
 class Routes {
   static Route generateRoute(RouteSettings settings) {
     if (settings.name == '/') {
       return MaterialPageRoute(builder: (context) => const WelcomePage());
     }
-    // if (settings.name == Profile.routeName) {
-    //   return MaterialPageRoute(builder: (context) => Profile());
-    // }
 
 // Auth
     if (settings.name == LoginPage.routeName) {
@@ -23,15 +21,12 @@ class Routes {
     }
 
     // Bottom Navigation
-    // if (settings.name == HomeScreen.routeName) {
-    return MaterialPageRoute(builder: (context) => HomeScreen());
-    // }
-    // if (settings.name == FilterScreenMain.routeName) {
-    //   return MaterialPageRoute(builder: (context) => FilterScreenMain());
-    // }
-    // if (settings.name == HistoryPage.routeName) {
-    //   return MaterialPageRoute(builder: (context) => HistoryPage());
-    // }
+    if (settings.name == HomeScreen.routeName) {
+      return MaterialPageRoute(builder: (context) => HomeScreen());
+    }
+    if (settings.name == MapScreen.routeName) {
+      return MaterialPageRoute(builder: (context) => const MapScreen());
+    }
 
     // Tour
     // if (settings.name == TourInfoScreen.routeName) {
@@ -47,6 +42,7 @@ class Routes {
 
     //   return MaterialPageRoute(builder: (context) => TourAdd(args));
     // }
+    return MaterialPageRoute(builder: (context) => const WelcomePage());
   }
 }
 

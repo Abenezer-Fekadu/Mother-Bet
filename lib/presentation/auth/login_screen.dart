@@ -9,6 +9,7 @@ import 'package:mother_bet/presentation/auth/component/title.dart';
 import 'package:mother_bet/presentation/auth/constants.dart';
 import 'package:mother_bet/presentation/auth/signup.dart';
 import 'package:mother_bet/presentation/home/home.dart';
+import 'package:mother_bet/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   static const String routeName = "/login";
@@ -114,7 +115,9 @@ class _LoginPageState extends State<LoginPage> {
                     BlocConsumer<AuthBloc, AuthState>(
                       listener: (ctx, authState) {
                         if (authState is AuthSuccess) {
-                          print(authState.user);
+                          UserSimplePreferences.setUser(authState.user);
+
+                          // print(authState.user);
                           Navigator.of(context).pushNamed(HomeScreen.routeName);
                         }
                       },

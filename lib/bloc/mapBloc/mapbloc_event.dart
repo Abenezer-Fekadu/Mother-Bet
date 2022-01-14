@@ -6,6 +6,8 @@ abstract class MapBlocEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class LoadMothers extends MapBlocEvent {}
+
 class MapDirectionEvent extends MapBlocEvent {
   final LatLng origin;
   final LatLng destination;

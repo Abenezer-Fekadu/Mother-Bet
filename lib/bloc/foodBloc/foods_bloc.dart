@@ -17,7 +17,7 @@ class FoodsBloc extends Bloc<FoodsEvent, FoodsState> {
         final foods = await foodsRepository.fetchTopFoods();
         yield FoodsOperationSuccess(foods);
       } catch (e) {
-        print(e);
+        // print(e);
         yield FoodsOperationFailure(e.toString());
       }
     }

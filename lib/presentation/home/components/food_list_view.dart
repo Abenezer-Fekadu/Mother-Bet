@@ -66,7 +66,7 @@ class _FoodsListViewState extends State<FoodsListView>
               ),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
-                mainAxisSpacing: 32.0,
+                mainAxisSpacing: 10.0,
                 crossAxisSpacing: 32.0,
                 childAspectRatio: 0.8,
               ),
@@ -142,7 +142,7 @@ class CategoryView extends StatelessWidget {
                                             right: 16,
                                             bottom: 8),
                                         child: Text(
-                                          food.description,
+                                          food.image,
                                           textAlign: TextAlign.left,
                                           style: const TextStyle(
                                             fontWeight: FontWeight.w200,

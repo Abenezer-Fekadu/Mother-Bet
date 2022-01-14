@@ -20,6 +20,24 @@ class MapFailure extends MapBlocState {
   final String txt;
 
   MapFailure(this.txt);
+
+  @override
+  List<Object> get props => [txt];
+}
+
+class MothersSuccessState extends MapBlocState {
+  final List<Mother> mothers;
+
+  MothersSuccessState(this.mothers);
+
+  @override
+  List<Object> get props => [mothers];
+}
+
+class MothersFailure extends MapBlocState {
+  final String txt;
+
+  MothersFailure(this.txt);
   @override
   List<Object> get props => [txt];
 }

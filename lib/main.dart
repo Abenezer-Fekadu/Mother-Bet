@@ -31,12 +31,12 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   initRoute() {
-    // final user = UserSimplePreferences.getUser();
-    // if (user != null) {
-    // return HomeScreen.routeName;
-    // } else {
-    return '/';
-    // }
+    final user = UserSimplePreferences.getUser();
+    if (user != null) {
+      return HomeScreen.routeName;
+    } else {
+      return '/';
+    }
   }
 
   @override
@@ -44,8 +44,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (ctx) => AuthBloc(authRepo)),
-        BlocProvider(
-            create: (ctx) => FoodsBloc(foodsRepo)..add(const LoadFoods())),
+        BlocProvider(create: (ctx) => FoodsBloc(foodsRepo)..add(LoadFoods())),
       ],
       child: MaterialApp(
         title: 'Mother Bet',

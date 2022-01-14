@@ -1,79 +1,62 @@
 class Food {
   final String foodId;
-  final String motherId;
+  final Mother mother;
   final String name;
-  final String description;
   final int price;
   final String image;
-  final List<dynamic> ingridient;
+  final List<dynamic> ingredient;
 
-  Food(this.foodId, this.motherId, this.name, this.description, this.price,
-      this.image, this.ingridient);
+  Food(this.foodId, this.mother, this.name, this.price, this.image,
+      this.ingredient);
 
   factory Food.fromJson(Map<String, dynamic> json) {
     return Food(
-      json['food_id'] as String,
-      json['mother_id'] as String,
+      json['_id'] as String,
+      Mother.fromJson(json["mother"]),
       json['name'] as String,
-      json['description'] as String,
       json['price'] as int,
       json['image'] as String,
-      json['ingridient'] as List<dynamic>,
+      json['ingredient'] as List<dynamic>,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'food_id': foodId,
-      'mother_id': motherId,
+      '_id': foodId,
+      'mother': mother,
       'name': name,
-      'description': description,
       'price': price,
       'image': image,
-      'ingridient': ingridient,
+      'ingredient': ingredient,
     };
   }
 }
 
+class Mother {
+  final String name;
+  final String motherId;
+  Mother(
+    this.motherId,
+    this.name,
+  );
+  factory Mother.fromJson(Map<String, dynamic> json) =>
+      Mother(json["_id"], json["name"]);
+
+  Map<String, dynamic> toJson() => {
+        "_id": motherId,
+        "name": name,
+      };
+}
+
 List<Food> demoFoods = [
-  Food(
-      "wbjqw2-21s22d",
-      "cm90wdw-wcncjq-12918w",
-      'Mina',
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim eget amet viverra eget fames rhoncus. Eget enim venenatis enim porta egestas malesuada et. Consequat mauris lacus euismod montes.",
-      30,
-      'images/shiro1.jpeg',
-      ['mosh', "loga"]),
-  Food(
-      "wbjqw2-21s22d",
-      "cm90wdw-wcncjq-12918w",
-      'Maed',
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim eget amet viverra eget fames rhoncus. Eget enim venenatis enim porta egestas malesuada et. Consequat mauris lacus euismod montes.",
-      30,
-      'images/shiro2.jpeg',
-      ['mosh', "loga"]),
-  Food(
-      "wbjqw2-21s22d",
-      "cm90wdw-wcncjq-12918w",
-      'Minab',
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim eget amet viverra eget fames rhoncus. Eget enim venenatis enim porta egestas malesuada et. Consequat mauris lacus euismod montes.",
-      30,
-      'images/shiro3.jpg',
-      ['mosh', "loga"]),
-  Food(
-      "wbjqw2-21s22d",
-      "cm90wdw-wcncjq-12918w",
-      'Saron',
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim eget amet viverra eget fames rhoncus. Eget enim venenatis enim porta egestas malesuada et. Consequat mauris lacus euismod montes.",
-      30,
-      'images/shiro4.jpg',
-      ['mosh', "loga"]),
-  Food(
-      "wbjqw2-21s22d",
-      "cm90wdw-wcncjq-12918w",
-      'Nahom',
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim eget amet viverra eget fames rhoncus. Eget enim venenatis enim porta egestas malesuada et. Consequat mauris lacus euismod montes.",
-      30,
-      'images/shiro5.jpeg',
-      ['mosh', "loga"]),
+  Food("wbjqw2-21s22d", new Mother("26881", "Mina"), 'Mina', 30,
+      'images/shiro1.jpeg', ['mosh', "loga"]),
+  Food("wbjqw2-21s22d", new Mother("26881", "Mina"), 'Maed', 30,
+      'images/shiro2.jpeg', ['mosh', "loga"]),
+  Food("wbjqw2-21s22d", new Mother("26881", "Mina"), 'Minab', 30,
+      'images/shiro3.jpg', ['mosh', "loga"]),
+  Food("wbjqw2-21s22d", new Mother("26881", "Mina"), 'Saron', 30,
+      'images/shiro4.jpg', ['mosh', "loga"]),
+  Food("wbjqw2-21s22d", new Mother("26881", "Mina"), 'Nahom', 30,
+      'images/shiro5.jpeg', ['mosh', "loga"]),
 ];

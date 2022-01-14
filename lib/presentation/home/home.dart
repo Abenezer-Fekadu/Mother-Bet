@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mother_bet/presentation/components/bottom_nav_bar.dart';
 import 'package:mother_bet/presentation/home/components/food_list_view.dart';
 
 import 'components/populart_foods.dart';
@@ -55,6 +56,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: BottomNavBar(0),
     );
   }
 

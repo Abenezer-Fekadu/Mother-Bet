@@ -125,10 +125,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       BlocConsumer<AuthBloc, AuthState>(
                         listener: (ctx, authState) {
                           if (authState is AuthSuccess) {
-                            // Future logInUser(User user) async {
-                            // await SaveUsersDb.instance.create(user);
-                            // }
-
                             try {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
