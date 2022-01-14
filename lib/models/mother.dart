@@ -5,10 +5,10 @@ class Mother {
   final Location location;
   final String name;
   final String phone;
-  final String moto;
+  final String motto;
   final Food foods;
 
-  Mother(this.motherId, this.location, this.name, this.phone, this.moto,
+  Mother(this.motherId, this.location, this.name, this.phone, this.motto,
       this.foods);
 
   factory Mother.fromJson(Map<String, dynamic> json) {
@@ -28,7 +28,7 @@ class Mother {
       'location': location,
       'name': name,
       'phone': phone,
-      'moto': moto,
+      'moto': motto,
       'foods': foods
     };
   }

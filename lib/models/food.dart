@@ -1,6 +1,6 @@
 class Food {
   final String foodId;
-  final Mother mother;
+  final Mothers mother;
   final String name;
   final int price;
   final String image;
@@ -12,7 +12,7 @@ class Food {
   factory Food.fromJson(Map<String, dynamic> json) {
     return Food(
       json['_id'] as String,
-      Mother.fromJson(json["mother"]),
+      Mothers.fromJson(json["mother"]),
       json['name'] as String,
       json['price'] as int,
       json['image'] as String,
@@ -32,15 +32,15 @@ class Food {
   }
 }
 
-class Mother {
+class Mothers {
   final String name;
   final String motherId;
-  Mother(
+  Mothers(
     this.motherId,
     this.name,
   );
-  factory Mother.fromJson(Map<String, dynamic> json) =>
-      Mother(json["_id"], json["name"]);
+  factory Mothers.fromJson(Map<String, dynamic> json) =>
+      Mothers(json["_id"], json["name"]);
 
   Map<String, dynamic> toJson() => {
         "_id": motherId,
@@ -49,14 +49,14 @@ class Mother {
 }
 
 List<Food> demoFoods = [
-  Food("wbjqw2-21s22d", new Mother("26881", "Mina"), 'Mina', 30,
-      'images/shiro1.jpeg', ['mosh', "loga"]),
-  Food("wbjqw2-21s22d", new Mother("26881", "Mina"), 'Maed', 30,
-      'images/shiro2.jpeg', ['mosh', "loga"]),
-  Food("wbjqw2-21s22d", new Mother("26881", "Mina"), 'Minab', 30,
-      'images/shiro3.jpg', ['mosh', "loga"]),
-  Food("wbjqw2-21s22d", new Mother("26881", "Mina"), 'Saron', 30,
-      'images/shiro4.jpg', ['mosh', "loga"]),
-  Food("wbjqw2-21s22d", new Mother("26881", "Mina"), 'Nahom', 30,
-      'images/shiro5.jpeg', ['mosh', "loga"]),
+  Food("wbjqw2-21s22d", Mothers("26881", "Mina"), 'Mina', 30,
+      'assets/images/shiro1.jpeg', ['mosh', "loga"]),
+  Food("wbjqw2-21s22d", Mothers("26881", "Mina"), 'Maed', 30,
+      'assets/images/shiro2.jpeg', ['mosh', "loga"]),
+  Food("wbjqw2-21s22d", Mothers("26881", "Mina"), 'Minab', 30,
+      'assets/images/shiro3.jpg', ['mosh', "loga"]),
+  Food("wbjqw2-21s22d", Mothers("26881", "Mina"), 'Saron', 30,
+      'assets/images/shiro4.jpg', ['mosh', "loga"]),
+  Food("wbjqw2-21s22d", Mothers("26881", "Mina"), 'Nahom', 30,
+      'assets/images/shiro5.jpeg', ['mosh', "loga"]),
 ];

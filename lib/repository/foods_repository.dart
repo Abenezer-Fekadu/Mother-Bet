@@ -1,5 +1,6 @@
 import 'package:mother_bet/dataProvider/foods_data_provider.dart';
 import 'package:mother_bet/models/food.dart';
+import 'package:mother_bet/models/mother.dart';
 
 class FoodsRepository {
   final FoodsDataProvider _dataProvider;
@@ -7,5 +8,13 @@ class FoodsRepository {
 
   Future<List<Food>> fetchTopFoods() async {
     return _dataProvider.fetchTopFoods();
+  }
+
+  Future<List<Mother>> fetchMothers() async {
+    return _dataProvider.fetchMothers();
+  }
+
+  Future<Food> getFood(int id) async {
+    return _dataProvider.getFood(id);
   }
 }

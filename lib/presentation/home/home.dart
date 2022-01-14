@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mother_bet/presentation/components/bottom_nav_bar.dart';
+import 'package:location/location.dart';
+import 'package:mother_bet/outExeption.dart';
 import 'package:mother_bet/presentation/home/components/food_list_view.dart';
+import 'package:mother_bet/presentation/mapDisplay/map_view.dart';
 
 import 'components/populart_foods.dart';
 
@@ -10,6 +12,19 @@ class HomeScreen extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   HomeScreen({Key? key}) : super(key: key);
+  void initState() {
+    _getLocationPermission();
+  }
+
+  void _getLocationPermission() async {
+    var location = Location();
+    try {
+      location.requestPermission();
+    } on Exception catch (_) {
+      throw AppExc("Location Access Not Granted");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,13 +37,21 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(color: Color(0XFF2C2C2C), fontSize: 25),
         ),
         leading: IconButton(
-            icon: ClipOval(child: Image.asset('images/menu.png')),
+            icon: const ClipOval(
+              child: Image(
+                image: AssetImage('assets/images/menu.png'),
+              ),
+            ),
             onPressed: () {
               // scaffoldKey.currentState.openDrawer();
             }),
         actions: [
           IconButton(
-              icon: ClipOval(child: Image.asset('images/avatar.png')),
+              icon: const ClipOval(
+                child: Image(
+                  image: AssetImage("assets/images/avatar.png"),
+                ),
+              ),
               onPressed: () {}),
         ],
       ),
@@ -45,7 +68,6 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     const PopularFoods(),
-                    // Recommended(),
                     Flexible(
                       child: topPickedFoods(),
                     ),
@@ -56,7 +78,11 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavBar(0),
+      floatingActionButton: FloatingActionButton(
+          tooltip: 'GoToMap',
+          child: const Icon(Icons.map),
+          onPressed: () =>
+              Navigator.of(context).pushNamed(MapScreen.routeName)),
     );
   }
 

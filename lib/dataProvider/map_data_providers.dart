@@ -29,12 +29,12 @@ class MapDataProvider {
   }
 
   Future<List<Mother>> fetchAllMothers() async {
-    final user = await UserSimplePreferences.getUser();
+    // final user = await UserSimplePreferences.getUser();
 
     final response = await http.get(Uri.parse("$url/mothers"), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ${user.token}',
+      // 'Authorization': 'Bearer ${user.token}',
     });
     if (response.statusCode == 200) {
       final mothers = jsonDecode(response.body) as List;

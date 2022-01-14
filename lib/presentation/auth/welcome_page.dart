@@ -74,49 +74,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return getuser();
-    // print(getuser().then((value) => value.username));
-  }
-
-  // Future<List> user() {
-  //   try {
-  //     final user = SaveUsersDb.instance.readUser();
-  //     if (user != null) {
-
-  //       return null;
-
-  //       // Navigator.pushNamed(context, HomeScreen.routeName);
-  //     } else {
-  //       SaveUsersDb.instance.close();
-
-  //       return user;
-  //       // Navigator.pushNamed(context, '/');
-  //     }
-  //   } catch (e) {
-  //     return null;
-  //   }
-  //   }
-  Widget getuser() {
-    try {
-      // final user = SaveUsersDb.instance.readUser();
-
-      // print(user[0]['email']);
-      final user = null;
-      if (user != null) {
-        // Navigator.pushNamed(context, HomeScreen.routeName);
-
-        return const Text("Text");
-      } else {
-        // SaveUsersDb.instance.close();
-
-        return wel();
-        // Navigator.pushNamed(context, '/');
-      }
-    } catch (e) {
-      return const Text("Error");
-
-      // print("ERROR OCCURED :" + e);
-    }
+    return wel();
   }
 
   Widget wel() {

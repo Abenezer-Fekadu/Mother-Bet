@@ -8,3 +8,5 @@ abstract class FoodsEvent extends Equatable {
 }
 
 class LoadFoods extends FoodsEvent {}
+
+class LoadMothers extends FoodsEvent {}

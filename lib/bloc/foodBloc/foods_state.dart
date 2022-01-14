@@ -26,3 +26,12 @@ class FoodsOperationFailure extends FoodsState {
   @override
   List<Object> get props => [message];
 }
+
+class MothersSuccess extends FoodsState {
+  final Iterable<Mother> mothers;
+
+  const MothersSuccess([this.mothers = const []]);
+
+  @override
+  List<Object> get props => [mothers];
+}

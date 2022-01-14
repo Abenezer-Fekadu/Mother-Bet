@@ -26,14 +26,16 @@ class UserSimplePreferences {
     }
   }
 
-  static Future<User> getUser() async {
+  static Future<User?> getUser() async {
     try {
       final SharedPreferences preferences = await prefs;
       // print(User.fromJson(json.decode(preferences.getString(_keyUser)!)).token +
       //     "hgfxfghg");
-      return User.fromJson(json.decode(preferences.getString(_keyUser)!));
+      if ((preferences.getKeys()).isNotEmpty) {
+        return User.fromJson(json.decode(preferences.getString(_keyUser)!));
+      }
+      return null;
     } catch (err) {
-      print(err);
       throw AppExc("User Doesn't Exist");
     }
   }

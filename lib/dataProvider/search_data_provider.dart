@@ -12,9 +12,9 @@ class SearchDataProvider {
     final user = await UserSimplePreferences.getUser();
 
     final response = await http.get(Uri.parse("$url/Mothers/$name"), headers: {
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ${user.token}',
+      // 'Authorization': 'Bearer ${user.token}',
     });
     if (response.statusCode == 200) {
       final mothers = jsonDecode(response.body) as List;

@@ -7,6 +7,7 @@ import 'package:mother_bet/bloc/authBloc/auth_bloc.dart';
 import 'package:mother_bet/bloc/foodBloc/foods_bloc.dart';
 import 'package:mother_bet/dataProvider/auth_data_provider.dart';
 import 'package:mother_bet/dataProvider/foods_data_provider.dart';
+import 'package:mother_bet/models/user.dart';
 import 'package:mother_bet/repository/auth_repository.dart';
 import 'package:mother_bet/repository/foods_repository.dart';
 
@@ -19,20 +20,24 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  // await UserSimplePreferences.init();
 
-  runApp(const MyApp());
+  User? user = await UserSimplePreferences.getUser();
+  runApp(MyApp(user));
 }
 
 final authRepo = AuthRepository(AuthDataProvider());
 final foodsRepo = FoodsRepository(FoodsDataProvider());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final User? user;
+  const MyApp(this.user, {Key? key}) : super(key: key);
 
   initRoute() {
-    final user = UserSimplePreferences.getUser();
-    if (user != null) {
+    return _getUser();
+  }
+
+  String _getUser() {
+    if (user == null) {
       return HomeScreen.routeName;
     } else {
       return '/';
