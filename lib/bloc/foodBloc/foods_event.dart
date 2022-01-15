@@ -10,3 +10,8 @@ abstract class FoodsEvent extends Equatable {
 class LoadFoods extends FoodsEvent {}
 
 class LoadMothers extends FoodsEvent {}
+
+class GetFood extends FoodsEvent {
+  final String id;
+  GetFood(this.id);
+}

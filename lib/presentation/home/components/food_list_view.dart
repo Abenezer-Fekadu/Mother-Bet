@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mother_bet/bloc/foodBloc/foods_bloc.dart';
 import 'package:mother_bet/models/food.dart';
 import 'package:mother_bet/presentation/food_app_theme.dart';
+import 'package:mother_bet/presentation/home/components/food_info_screen.dart';
 
 class FoodsListView extends StatefulWidget {
   const FoodsListView({Key? key}) : super(key: key);
@@ -22,6 +23,12 @@ class _FoodsListViewState extends State<FoodsListView>
     super.initState();
   }
 
+  @override
+  void dispose() {
+    animationController!.dispose();
+    super.dispose();
+  }
+
   Future<bool> getData() async {
     await Future<dynamic>.delayed(const Duration(milliseconds: 200));
     return true;
@@ -34,7 +41,7 @@ class _FoodsListViewState extends State<FoodsListView>
       child: BlocBuilder<FoodsBloc, FoodsState>(
         builder: (context, state) {
           if (state is FoodsOperationFailure) {
-            return const Text("Could Not Load Foods");
+            return Text(state.message);
           }
           if (state is FoodsOperationSuccess) {
             final foods = state.foods.length;
@@ -99,8 +106,8 @@ class CategoryView extends StatelessWidget {
             child: InkWell(
               splashColor: Colors.transparent,
               onTap: () {
-                // Navigator.of(context)
-                //     .pushNamed(FoodInfoScreen.routeName, arguments: food);
+                Navigator.of(context)
+                    .pushNamed(FoodInfoScreen.routeName, arguments: food);
               },
               child: SizedBox(
                 height: 50,
@@ -129,7 +136,7 @@ class CategoryView extends StatelessWidget {
                                           textAlign: TextAlign.left,
                                           style: const TextStyle(
                                             fontWeight: FontWeight.w600,
-                                            fontSize: 14,
+                                            fontSize: 16,
                                             letterSpacing: 0.27,
                                             color: FoodAppTheme.darkerText,
                                           ),
@@ -142,11 +149,11 @@ class CategoryView extends StatelessWidget {
                                             right: 16,
                                             bottom: 8),
                                         child: Text(
-                                          food.image,
+                                          "${food.ingredient}",
                                           textAlign: TextAlign.left,
                                           style: const TextStyle(
                                             fontWeight: FontWeight.w200,
-                                            fontSize: 5,
+                                            fontSize: 9,
                                             letterSpacing: 0.1,
                                             color: FoodAppTheme.grey,
                                           ),
@@ -208,7 +215,7 @@ class CategoryView extends StatelessWidget {
                               const BorderRadius.all(Radius.circular(16.0)),
                           child: AspectRatio(
                             aspectRatio: 1.28,
-                            child: Image.asset("images/shiro1.jpeg"),
+                            child: Image.asset("assets/${food.image}"),
                           ),
                         ),
                       ),

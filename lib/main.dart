@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mother_bet/bloc/authBloc/auth_bloc.dart';
@@ -17,11 +16,12 @@ import 'package:mother_bet/shared_preferences.dart';
 import 'presentation/home/home.dart';
 
 Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-
-  User? user = await UserSimplePreferences.getUser();
+  User? user;
+  try {
+    user = await UserSimplePreferences.getUser();
+  } catch (ex) {
+    user = null;
+  }
   runApp(MyApp(user));
 }
 
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (ctx) => AuthBloc(authRepo)),
-        BlocProvider(create: (ctx) => FoodsBloc(foodsRepo)..add(LoadFoods())),
+        BlocProvider(create: (ctx) => FoodsBloc(foodsRepo)),
       ],
       child: MaterialApp(
         title: 'Mother Bet',

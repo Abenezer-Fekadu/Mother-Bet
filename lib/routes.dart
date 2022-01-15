@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mother_bet/models/food.dart';
 import 'package:mother_bet/presentation/auth/login_screen.dart';
 import 'package:mother_bet/presentation/auth/signup.dart';
 import 'package:mother_bet/presentation/auth/welcome_page.dart';
+import 'package:mother_bet/presentation/home/components/food_info_screen.dart';
 import 'package:mother_bet/presentation/home/home.dart';
 import 'package:mother_bet/presentation/mapDisplay/map_view.dart';
 
@@ -28,26 +30,17 @@ class Routes {
       return MaterialPageRoute(builder: (context) => const MapScreen());
     }
 
-    // Tour
-    // if (settings.name == TourInfoScreen.routeName) {
-    //   Tour tour = settings.arguments as Tour;
-    //   return MaterialPageRoute(builder: (context) => TourInfoScreen(tour));
-    // }
+    // Food
+    if (settings.name == FoodInfoScreen.routeName) {
+      Food food = settings.arguments as Food;
+      return MaterialPageRoute(builder: (context) => FoodInfoScreen(food));
+    }
 
-    // if (settings.name == AgentHome.routeName) {
-    //   return MaterialPageRoute(builder: (context) => AgentHome());
-    // }
-    // if (settings.name == TourAdd.routeName) {
-    //   TourArgument args = settings.arguments as TourArgument;
-
-    //   return MaterialPageRoute(builder: (context) => TourAdd(args));
-    // }
     return MaterialPageRoute(builder: (context) => const WelcomePage());
   }
 }
 
-// class TourArgument {
-//   final Tour tour;
-//   final bool edit;
-//   TourArgument({this.tour, @required this.edit});
-// }
+class TourArgument {
+  final Food tour;
+  TourArgument(this.tour);
+}

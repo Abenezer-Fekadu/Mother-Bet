@@ -74,6 +74,9 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // final height = MediaQuery.of(context).size.height;
+    // final width = MediaQuery.of(context).size.height;
+
     return wel();
   }
 
@@ -117,4 +120,82 @@ class _WelcomePageState extends State<WelcomePage> {
       ),
     );
   }
+
+  // Widget welc(double height, double width) {
+  //   return Stack(
+  //     children: [
+  //       Container(
+  //         color: Colors.yellow,
+  //       ),
+  //       Container(
+  //         width: width,
+  //         height: height * 80,
+  //         decoration: const BoxDecoration(
+  //             color: Colors.white,
+  //             borderRadius: BorderRadius.only(
+  //               bottomLeft: Radius.circular(60),
+  //               bottomRight: Radius.circular(60),
+  //             )),
+  //         child: VStack([
+  //           SvgPicture.asset(
+  //             "assets/Logo.png",
+  //             fit: BoxFit.cover,
+  //           ).pOnly(top: 100, bottom: 32),
+  //           "Cleaning on Demand".text.center.extraBlack.xl3.makeCentered(),
+  //           8.heightBox,
+  //           "Book an appointment in less than 60 seconds and get on the schedule as early as tomorrow."
+  //               .text
+  //               .gray500
+  //               .medium
+  //               .center
+  //               .makeCentered()
+  //               .p16()
+  //         ]),
+  //       ),
+  //       Positioned(
+  //         child: Container(
+  //           height: height * 15,
+  //           child: VStack(
+  //             [
+  //               HStack(
+  //                 [
+  //                   VxBox().square(5).gray500.roundedFull.make(),
+  //                   10.widthBox,
+  //                   VxBox().square(8).white.roundedFull.make(),
+  //                   10.widthBox,
+  //                   VxBox().square(5).gray500.roundedFull.make(),
+  //                 ],
+  //                 alignment: MainAxisAlignment.center,
+  //               ).wFull(context),
+  //               16.heightBox,
+  //               Spacer(),
+  //               ButtonBar(
+  //                 mainAxisSize: MainAxisSize.max,
+  //                 alignment: MainAxisAlignment.spaceBetween,
+  //                 children: [
+  //                   FlatButton(
+  //                     onPressed: () {},
+  //                     child: "Skip".text.white.make(),
+  //                   ),
+  //                   [
+  //                     FlatButton(
+  //                       onPressed: () {},
+  //                       child: "Next".text.white.make(),
+  //                     ).px2(),
+  //                     Image(
+  //                       image: AssetImage("assets/images/Logo.png"),
+  //                     )
+  //                   ].hStack()
+  //                 ],
+  //               )
+  //             ],
+  //             alignment: MainAxisAlignment.start,
+  //           ).wFull(context),
+  //         ),
+  //         bottom: 24,
+  //       ),
+  //     ],
+  //   );
+  // }
+
 }

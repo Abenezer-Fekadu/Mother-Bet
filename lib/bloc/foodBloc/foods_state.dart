@@ -35,3 +35,30 @@ class MothersSuccess extends FoodsState {
   @override
   List<Object> get props => [mothers];
 }
+
+class MotherFailure extends FoodsState {
+  final String message;
+
+  const MotherFailure(this.message);
+
+  @override
+  List<Object> get props => [message];
+}
+
+class FoodSuccess extends FoodsState {
+  final Food food;
+
+  const FoodSuccess(this.food);
+
+  @override
+  List<Object> get props => [food];
+}
+
+class FoodFailure extends FoodsState {
+  final String message;
+
+  const FoodFailure(this.message);
+
+  @override
+  List<Object> get props => [message];
+}

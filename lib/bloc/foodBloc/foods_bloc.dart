@@ -17,7 +17,7 @@ class FoodsBloc extends Bloc<FoodsEvent, FoodsState> {
         final foods = await foodsRepository.fetchTopFoods();
         yield FoodsOperationSuccess(foods);
       } catch (e) {
-        // print(e);
+        print(e);
         yield FoodsOperationFailure(e.toString());
       }
     }
@@ -27,7 +27,17 @@ class FoodsBloc extends Bloc<FoodsEvent, FoodsState> {
         final mothers = await foodsRepository.fetchMothers();
         yield MothersSuccess(mothers);
       } catch (e) {
-        yield FoodsOperationFailure(e.toString());
+        print(e);
+        yield MotherFailure(e.toString());
+      }
+    }
+    if (event is GetFood) {
+      try {
+        final mothers =
+            await foodsRepository.getFood(event.id);
+        yield FoodSuccess(mothers);
+      } catch (e) {
+        yield FoodFailure(e.toString());
       }
     }
   }

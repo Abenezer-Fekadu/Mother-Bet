@@ -18,6 +18,7 @@ class AuthDataProvider {
         }));
 
     if (response.statusCode == 201) {
+      // return User("0","email", "username", "phone", "password", "token");
       return User.fromJson(jsonDecode(response.body));
     } else {
       final err = jsonDecode(response.body);

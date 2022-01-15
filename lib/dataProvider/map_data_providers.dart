@@ -6,7 +6,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mother_bet/models/directions.dart';
 import 'package:mother_bet/models/mother.dart';
 import 'package:mother_bet/outExeption.dart';
-import 'package:mother_bet/shared_preferences.dart';
 
 class MapDataProvider {
   // Get Directions

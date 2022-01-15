@@ -14,7 +14,11 @@ class FoodsRepository {
     return _dataProvider.fetchMothers();
   }
 
-  Future<Food> getFood(int id) async {
+  Future<Food> getFood(String id) async {
     return _dataProvider.getFood(id);
+  }
+
+  Future<List<Mother>> searchFoods(String name) async {
+    return _dataProvider.searchFoods(name);
   }
 }

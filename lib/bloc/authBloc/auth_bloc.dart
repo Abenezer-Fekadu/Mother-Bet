@@ -22,11 +22,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final password = event.password;
 
       final user = User("id", email, "username", "phone", password, "token");
+      // print(user);
       try {
         final result = await authRepo.login(user);
+        // print("ttttttttttttttttttttttttttttttttttttttttt");
 
+        print(user);
         yield AuthSuccess(result);
-      } on SocketException catch (_) {
+        // } on SocketException catch (e) {
+        //   print("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+        //   print(e);
         yield AuthError("Check your internet connection");
       } catch (e) {
         yield AuthError(e.toString());
@@ -43,7 +48,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final password = event.password;
 
       final user = User("0", email, username, phone, password, "token");
-
+      print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+      print(user.phone);
+      print(user.email);
+      print(user.username);
+      print(user.phone);
       try {
         final result = await authRepo.signup(user);
         yield AuthSuccess(result);

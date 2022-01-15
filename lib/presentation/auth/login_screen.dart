@@ -13,7 +13,6 @@ import 'package:mother_bet/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   static const String routeName = "/login";
-  // final String title;
 
   const LoginPage({Key? key}) : super(key: key);
 
@@ -117,7 +116,6 @@ class _LoginPageState extends State<LoginPage> {
                         if (authState is AuthSuccess) {
                           UserSimplePreferences.setUser(authState.user);
 
-                          // print(authState.user);
                           Navigator.of(context).pushNamed(HomeScreen.routeName);
                         }
                       },
@@ -143,7 +141,6 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         }
                         if (authState is AuthError) {
-                          print("AuthError");
                           try {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text(authState.errMsg)));

@@ -50,13 +50,13 @@ class Mothers {
 
 List<Food> demoFoods = [
   Food("wbjqw2-21s22d", Mothers("26881", "Mina"), 'Mina', 30,
-      'assets/images/shiro1.jpeg', ['mosh', "loga"]),
+      'assets/images/shiro1.jpg', ['mosh', "loga"]),
   Food("wbjqw2-21s22d", Mothers("26881", "Mina"), 'Maed', 30,
-      'assets/images/shiro2.jpeg', ['mosh', "loga"]),
+      'assets/images/egg2.jpg', ['mosh', "loga"]),
   Food("wbjqw2-21s22d", Mothers("26881", "Mina"), 'Minab', 30,
-      'assets/images/shiro3.jpg', ['mosh', "loga"]),
+      'assets/images/meat1.jpg', ['mosh', "loga"]),
   Food("wbjqw2-21s22d", Mothers("26881", "Mina"), 'Saron', 30,
-      'assets/images/shiro4.jpg', ['mosh', "loga"]),
+      'assets/images/beyaynet2.jpg', ['mosh', "loga"]),
   Food("wbjqw2-21s22d", Mothers("26881", "Mina"), 'Nahom', 30,
-      'assets/images/shiro5.jpeg', ['mosh', "loga"]),
+      'assets/images/pasta1.jpg', ['mosh', "loga"]),
 ];

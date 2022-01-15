@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location/location.dart';
+import 'package:mother_bet/bloc/foodBloc/foods_bloc.dart';
+import 'package:mother_bet/dataProvider/foods_data_provider.dart';
 import 'package:mother_bet/outExeption.dart';
+import 'package:mother_bet/presentation/home/components/drawer.dart';
 import 'package:mother_bet/presentation/home/components/food_list_view.dart';
 import 'package:mother_bet/presentation/mapDisplay/map_view.dart';
+import 'package:mother_bet/repository/foods_repository.dart';
 
 import 'components/populart_foods.dart';
 
@@ -12,11 +17,10 @@ class HomeScreen extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   HomeScreen({Key? key}) : super(key: key);
-  void initState() {
-    _getLocationPermission();
-  }
 
-  void _getLocationPermission() async {
+  final FoodsRepository foodsRepository = FoodsRepository(FoodsDataProvider());
+
+  void _getLocationPermission() {
     var location = Location();
     try {
       location.requestPermission();
@@ -27,62 +31,74 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text(
-          "Discover",
-          style: TextStyle(color: Color(0XFF2C2C2C), fontSize: 25),
-        ),
-        leading: IconButton(
-            icon: const ClipOval(
-              child: Image(
-                image: AssetImage('assets/images/menu.png'),
-              ),
-            ),
-            onPressed: () {
-              // scaffoldKey.currentState.openDrawer();
-            }),
-        actions: [
-          IconButton(
-              icon: const ClipOval(
-                child: Image(
-                  image: AssetImage("assets/images/avatar.png"),
-                ),
-              ),
-              onPressed: () {}),
-        ],
-      ),
-      backgroundColor: Colors.white,
-      body: Column(
-        children: <Widget>[
-          SizedBox(
-            height: size,
+    _getLocationPermission();
+
+    return RepositoryProvider.value(
+      value: foodsRepository,
+      child: BlocProvider(
+        create: (context) => FoodsBloc(foodsRepository)..add(LoadFoods()),
+        child: Scaffold(
+          key: scaffoldKey,
+          drawer: const Drawer(
+            child: MainDrawer(),
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: Column(
-                  children: <Widget>[
-                    const PopularFoods(),
-                    Flexible(
-                      child: topPickedFoods(),
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            title: const Text(
+              "Discover",
+              style: TextStyle(color: Color(0XFF2C2C2C), fontSize: 25),
+            ),
+            leading: IconButton(
+                icon: const ClipOval(
+                  child: Image(
+                    image: AssetImage('assets/images/menu.png'),
+                  ),
+                ),
+                onPressed: () {
+                  scaffoldKey.currentState!.openDrawer();
+                }),
+            actions: [
+              IconButton(
+                  icon: const ClipOval(
+                    child: Image(
+                      image: AssetImage("assets/images/avatar.png"),
                     ),
-                  ],
+                  ),
+                  onPressed: () {}),
+            ],
+          ),
+          backgroundColor: Colors.white,
+          body: Column(
+            children: <Widget>[
+              SizedBox(
+                height: size,
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    child: Column(
+                      children: <Widget>[
+                        const PopularFoods(),
+                        Flexible(
+                          child: topPickedFoods(),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
+          floatingActionButton: FloatingActionButton(
+              tooltip: 'GoToMap',
+              child: const Icon(Icons.map),
+              onPressed: () {
+                Navigator.of(context).pushNamed(MapScreen.routeName);
+              }),
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-          tooltip: 'GoToMap',
-          child: const Icon(Icons.map),
-          onPressed: () =>
-              Navigator.of(context).pushNamed(MapScreen.routeName)),
     );
   }
 
